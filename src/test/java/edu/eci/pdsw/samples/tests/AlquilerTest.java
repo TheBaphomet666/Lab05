@@ -26,6 +26,7 @@ import static org.junit.Assert.*;
  * Clases de equivalencia:
  * CE1: Multas hechas a devolciones realizadas en fechas posteriores
  * a la limite. (multa multa_diaria*dias_retraso)
+ * CE2: Multas a devoluciones hechas antes de la fecha de devolucion (multa 0).
  * 
  * 
  * 
@@ -76,6 +77,22 @@ public class AlquilerTest {
                 
     }
     
+    @Test
+    public void CE2Test() throws ExcepcionServiciosAlquiler{
+        ServiciosAlquiler sa = ServiciosAlquilerItemsStub.getInstance();
+        Item i1=new Item(sa.consultarTipoItem(1), 66,"¿Y donde estan las rubias?", "Y donde estan las rubias es una pelicula de comedia, donde despues de que dos detectives del FBI fallan en su mision de escoltar a las Gemelas Wilson, estos deben suplantarlas y finjir ser ellas. Hecha en 2004", java.sql.Date.valueOf("2004-06-23"), 2000, "DVD", "Comedia");        
+        sa.registrarCliente(new Cliente("Juan Perez",9844,"24234","calle 123","aa@gmail.com"));
+        sa.registrarItem(i1);
+                
+        Item item=sa.consultarItem(66);
+        
+        sa.registrarAlquilerCliente(java.sql.Date.valueOf("2018-02-14"), 9844, item, 10);
+        //prueba: 4 dias antes de la entrega
+        assertEquals("No se calcula correctamente la multa (0) "
+                + "cuando la devolucion se realiza Dias antes del limite de entrega."
+                ,0,sa.consultarMultaAlquiler(66, java.sql.Date.valueOf("2018-02-20")));
+        
+    }
     
     
     
