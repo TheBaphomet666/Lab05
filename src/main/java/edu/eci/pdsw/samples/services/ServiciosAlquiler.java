@@ -63,12 +63,12 @@ public abstract class ServiciosAlquiler {
     public abstract List<TipoItem> consultarTiposItem() throws ExcepcionServiciosAlquiler;
 
     /**
-     * @obj rejistrar el alkiler de un item
+     * @obj registrar el alquiler de un item
      * @pre numdias >=1
-     * @param date fecha de rejistro del alquiler
-     * @param docu identificacion de a quien se le cargara el alquiler
+     * @param date fecha de registro del alquiler
+     * @param docu identificación de a quién se le cargará el alquiler
      * @param item el identificador del item a alquilar
-     * @param numdias el numero de dias que se le prestara el item
+     * @param numdias el número de días que se le prestará el item
      * @pos el item ya no debe estar disponible, y debe estar asignado al
      * cliente
      * @throws ExcepcionXX si el identificador no corresponde con un item, o si
