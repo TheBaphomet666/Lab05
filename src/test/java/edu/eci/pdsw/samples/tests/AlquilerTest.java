@@ -86,11 +86,11 @@ public class AlquilerTest {
                 
         Item item=sa.consultarItem(66);
         
-        sa.registrarAlquilerCliente(java.sql.Date.valueOf("2018-02-14"), 9844, item, 10);
+        sa.registrarAlquilerCliente(java.sql.Date.valueOf("2018-14-02"), 9844, item, 10);
         //prueba: 4 dias antes de la entrega
         assertEquals("No se calcula correctamente la multa (0) "
                 + "cuando la devolucion se realiza Dias antes del limite de entrega."
-                ,0,sa.consultarMultaAlquiler(66, java.sql.Date.valueOf("2018-02-20")));
+                ,0,sa.consultarMultaAlquiler(66, java.sql.Date.valueOf("2018-23-02")));
         
     }
     
