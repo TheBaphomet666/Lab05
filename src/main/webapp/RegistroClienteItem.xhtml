@@ -9,15 +9,20 @@
         <h:form>
             <table>
                 <tr>
-                    <td>Item</td>
-                    <td><input name="Codigo del Item"/></td>
+                    <td>Nombre</td>
+                    <td><input type="text" name="nombre"/></td>
                 </tr>
             </table>
             <table>
                     <td>Fecha</td>
                     <td><input name="Dias de alquiler"/></td>
-            </table>        
-            <h:commandButton action="RegistroClientes" value = "Home"/>
+            </table>
+            <table>
+                <tr>
+                    <input type="submit" name="buscar" value="Buscar" />  
+                </tr>
+            </table>
+          <h:commandButton action="RegistroClientes" value = "Home"/>
             
         </h:form>
     </h:body>

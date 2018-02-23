@@ -2,11 +2,77 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head>
     <h:body>
-        <h:form>
-            <h:commandButton action="RegistroClienteItem" value = "Next"/>
-        </h:form>
+        <table>
+            <tr>
+                <td>
+
+            <table>
+                
+                <h:form id="formulario_registro">
+                <td>Nombre
+                           <h:inputText value="#{AlquilerItems.text}" required="true"/></td>
+                        <tr>
+                            <td>Documento
+                            <h:inputText value="#{AlquilerItems.text}" required="true"/></td>
+                        </tr>
+                         <tr>
+                            <td>Telefono
+                            <h:inputText value="#{AlquilerItems.text}" required="true"/></td>
+                          </tr>
+                         <tr>
+                            <td>Direccion
+                            <h:inputText value="#{AlquilerItems.text}" required="true"/></td>
+                          </tr>
+                         <tr>
+                            <td>email
+                            <h:inputText value="#{AlquilerItems.text}" required="true"/></td>
+                          </tr>
+                           <tr>
+                          <td>Enviar
+                             <h:inputText value="#{AlquilerItems.text}" required="true"/></td>
+                           </tr>
+                    </h:form>
+
+                    </table>                
+
+                </td>
+                <td>
+                <table>
+                            <tr>
+                                <td>
+                                    <p:dataTable var="cliente" value="#{AlquilerItems.clientes}">
+                                        <p:column headerText="Nombre">
+                                            <h:outputText value="#{cliente.nombre}" />
+                                        </p:column>
+
+                                        <p:column headerText="Documento">
+                                            <h:outputText value="#{cliente.documento}" />
+                                        </p:column>
+
+                                        <p:column headerText="Telefono">
+                                            <h:outputText value="#{cliente.telefono}" />
+                                        </p:column>
+
+                                        <p:column headerText="Direccion">
+                                            <h:outputText value="#{cliente.direccion}" />
+                                        </p:column>
+                                        <p:column headerText="Email">
+                                            <h:outputText value="#{cliente.email}" />
+                                        </p:column>
+                                    </p:dataTable>
+
+	        <br />
+                               <input type="submit" name="ir" value="ir" /></td> 
+                            </tr>
+                </table>
+                </td>
+ 
+            </tr>
+        </table>
+
     </h:body>
 </html>

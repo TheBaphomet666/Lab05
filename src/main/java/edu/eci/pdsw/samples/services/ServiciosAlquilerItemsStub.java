@@ -39,7 +39,7 @@ public class ServiciosAlquilerItemsStub extends ServiciosAlquiler implements Ser
         itemsrentados = new HashMap<>();
         tipositems = new HashMap<>();
         mapaPrestamosPorIdCliente=new HashMap<>();
-        //poblar();
+        poblar();
     }
 
     @Override
@@ -226,6 +226,10 @@ public class ServiciosAlquilerItemsStub extends ServiciosAlquiler implements Ser
     public int valorMultaRetrasoxDia() {
         return MULTA_DIARIA;
     }
+    @Override
+    public Map<Long,Cliente> getclientes() {
+		return clientes;
+	}
 
     
     
