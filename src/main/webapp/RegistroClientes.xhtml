@@ -47,7 +47,7 @@
                                 <td>
                                     <p:dataTable id="table" var="cliente" value="#{AlquilerItems.clientes}">
                                         <p:column headerText="Nombre">
-                                            <p:commandButton value="#{cliente.nombre}"   />
+                                            <p:commandButton value="#{cliente.nombre}" action="#{AlquilerItems.alquiler(cliente)}"/>
                                         </p:column>
 
                                         <p:column headerText="Documento">

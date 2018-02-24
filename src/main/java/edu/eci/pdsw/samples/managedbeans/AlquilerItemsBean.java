@@ -8,6 +8,7 @@ package edu.eci.pdsw.samples.managedbeans;
 import edu.eci.pdsw.samples.entities.Cliente;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosAlquiler;
 import edu.eci.pdsw.samples.services.ServiciosAlquiler;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import static java.util.Collections.list;
@@ -33,6 +34,7 @@ public class AlquilerItemsBean implements Serializable {
     private String telefono="telefono";
     private String direccion="direccion";
     private String email="email";
+    private Cliente current;
     public AlquilerItemsBean() {
         clientes=sp.getclientes();
     }
@@ -91,4 +93,8 @@ public class AlquilerItemsBean implements Serializable {
            // System.out.println("Sreg"+nombre+telefono+direccion+email);
             registrar();
     }
+        public void alquiler(Cliente c) throws IOException{
+            current=c;
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/RegistroClienteItem.xhtml");
+        }
 }
