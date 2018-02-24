@@ -14,27 +14,28 @@
                 
                 <h:form id="formulario_registro">
                 <td>Nombre
-                           <h:inputText value="#{AlquilerItems.text}" required="true"/></td>
+                    <p:inputText id="nombre" value="#{AlquilerItems.nombre}" required="true"/></td>
                         <tr>
                             <td>Documento
-                            <h:inputText value="#{AlquilerItems.text}" required="true"/></td>
+                                <p:inputText id="documento" value="#{AlquilerItems.documento}" required="true"/></td>
                         </tr>
                          <tr>
                             <td>Telefono
-                            <h:inputText value="#{AlquilerItems.text}" required="true"/></td>
+                            <p:inputText id="telefono" value="#{AlquilerItems.telefono}" required="true"/></td>
                           </tr>
                          <tr>
                             <td>Direccion
-                            <h:inputText value="#{AlquilerItems.text}" required="true"/></td>
+                                <p:inputText id="direccion" value="#{AlquilerItems.direccion}" required="true"/></td>
                           </tr>
                          <tr>
                             <td>email
-                            <h:inputText value="#{AlquilerItems.text}" required="true"/></td>
+                                <p:inputText id="email" value="#{AlquilerItems.email}" required="true"/></td>
                           </tr>
-                           <tr>
-                          <td>Enviar
-                             <h:inputText value="#{AlquilerItems.text}" required="true"/></td>
-                           </tr>
+                    <tr>
+                        <td>
+                                 <p:commandButton id="registerclient" type="submit" value="Registrar"  actionListener="#{AlquilerItems.registerAction}" styleClass="ui-priority-primary" process="@form" partialSubmit="true" ajax="true" update=":table,formulario_registro"/>
+                        </td>
+                    </tr>
                     </h:form>
 
                     </table>                
@@ -44,9 +45,9 @@
                 <table>
                             <tr>
                                 <td>
-                                    <p:dataTable var="cliente" value="#{AlquilerItems.clientes}">
+                                    <p:dataTable id="table" var="cliente" value="#{AlquilerItems.clientes}">
                                         <p:column headerText="Nombre">
-                                            <h:outputText value="#{cliente.nombre}" />
+                                            <p:commandButton value="#{cliente.nombre}"   />
                                         </p:column>
 
                                         <p:column headerText="Documento">
@@ -64,9 +65,8 @@
                                             <h:outputText value="#{cliente.email}" />
                                         </p:column>
                                     </p:dataTable>
-
-	        <br />
-                               <input type="submit" name="ir" value="ir" /></td> 
+                                    <br />
+                                </td> 
                             </tr>
                 </table>
                 </td>
