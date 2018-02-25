@@ -6,25 +6,66 @@
     <h:head></h:head>
 
     <h:body>
-        <h:form>
-            <table>
-                <tr>
-                    <td>Nombre</td>
-                    <td><input type="text" name="nombre"/></td>
-                </tr>
-            </table>
-            <table>
-                    <td>Fecha</td>
-                    <td><input name="Dias de alquiler"/></td>
-            </table>
-            <table>
-                <tr>
-                    <input type="submit" name="buscar" value="Buscar" />  
-                </tr>
-            </table>
-          <h:commandButton action="RegistroClientes" value = "Home"/>
-            
-        </h:form>
-    </h:body>
+        <table>
+            <tr>
+                <td>
+                        <table>
+                            <tr>
+                            <td>    
+                                <h:form id="formulario_alquiler">
+                                  <tr>
+                                      <td>Id Item
+                                      <p:inputText id="id" value="#{AlquilerItems.id}" required="true"/></td>
+                                  </tr>
+                                   <tr>
+                                      <td>Dias de alquiler
+                                      <p:inputText id="dias" value="#{AlquilerItems.dias}" required="true"/></td>
+                                  </tr>
+                                  <tr>
+                                      <td>Costo
+                                      <h:outputText id="costo" value="#{AlquilerItems.costo(id,dias)}" required="true"/></td>
+                                  </tr>
+                                  <tr>
+                                      <td>
+                                       <p:commandButton id="registeritem" type="submit" value="RegistrarAlquiler"  actionListener="#{AlquilerItems.itemAction}" styleClass="ui-priority-primary" process="@form" partialSubmit="true" ajax="true" update=":tabla,formulario_alquiler"/>
+                                      </td>
+                                  </tr>
+                                  
+                                </h:form>
+                            </td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <td>
+                                    <p:dataTable id="tabla" var="items" value="#{AlquilerItems.items}">
+                                        <p:column headerText="ItemRentado id">
+                                            <h:outputText value="#{items.item.id}"/>
+                                        </p:column>
 
-</html>
+                                        <p:column headerText="Nombre">
+                                            <h:outputText value="#{items.item.nombre}"/>
+                                        </p:column>
+                                        
+                                        <p:column headerText="Valor Multa">
+                                            <h:outputText value="#{AlquilerItems.multa(items.item.id)}"/>
+                                        </p:column>
+                                        
+                                       
+                                    </p:dataTable>
+                                    <br />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p:commandButton value="Home" action="#{AlquilerItems.home()}"/>
+                                </td>
+                            </tr>
+                        </table>
+
+                </td>
+            </tr>
+        </table>
+    </h:body>
+</html>    
+    

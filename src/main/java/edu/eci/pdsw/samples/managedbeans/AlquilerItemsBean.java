@@ -5,7 +5,9 @@
  */
 package edu.eci.pdsw.samples.managedbeans;
 
+import java.sql.Date;
 import edu.eci.pdsw.samples.entities.Cliente;
+import edu.eci.pdsw.samples.entities.ItemRentado;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosAlquiler;
 import edu.eci.pdsw.samples.services.ServiciosAlquiler;
 import java.io.IOException;
@@ -29,19 +31,36 @@ public class AlquilerItemsBean implements Serializable {
 
     private ServiciosAlquiler sp = ServiciosAlquiler.getInstance();
     private Map<Long,Cliente> clientes;
+    private Map<Integer,Long> items;
     private String nombre="nombre";
     private long documento=0;
     private String telefono="telefono";
     private String direccion="direccion";
     private String email="email";
     private Cliente current;
+    private int id;
+    private int dias;
+    private java.sql.Date fecha;
+    private long multa;
+    private long costo;
+    
+    
     public AlquilerItemsBean() {
         clientes=sp.getclientes();
+        
     }
     public List<Cliente> getClientes() {
 		List<Cliente> list = new ArrayList<Cliente>(sp.getclientes().values());
                 return list;
     }
+    
+    public List<ItemRentado> getItems(){
+                List<ItemRentado> list = current.getRentados();
+                return list;
+    }
+    
+    
+    
     public void setNombre(String nombree){
         nombre=nombree;
     }
@@ -83,8 +102,67 @@ public class AlquilerItemsBean implements Serializable {
         catch ( Exception e){
             addMessage("Ese Cliente ya se ha registrado");
         }
+            
+    }
+    
+    public void setId(int ide){
+        id = ide;
+    }
+    
+    public int getId(){
+        return id;
+    }
+    
+    public void setDias(int diass){
+        dias = diass;
+        java.util.Date nfecha = new java.util.Date();
+        fecha = new java.sql.Date(nfecha.getTime());
         
     }
+    
+    public int getDias(){
+        return dias;
+    }
+    
+    public long multa(int idem){
+        java.util.Date utilDate = new java.util.Date();
+        java.sql.Date fechaactual = new java.sql.Date(utilDate.getTime());
+        try{
+            multa = sp.consultarMultaAlquiler(idem,fechaactual);
+        }
+        catch(Exception e){
+            addMessage("Item no encontrado");
+        }
+        return multa;
+    }
+    
+    
+    
+    public void registrarItem(){
+        try{
+          sp.registrarAlquilerCliente(fecha,current.getDocumento(),sp.consultarItem(id),dias);
+        }
+        catch(Exception e){
+            addMessage("Ese Item ya se ha registrado");
+        }
+    }
+    
+    
+   
+    public long costo(int ide,int diee){
+        id=ide;
+        dias=diee;
+        try{
+            costo = sp.consultarCostoAlquiler(id,dias);
+            return costo;
+        }
+        catch ( Exception e){
+            addMessage("Item no encontrado en la base de datos");
+        }
+        return costo;
+    }
+    
+    
         public void addMessage(String summary) {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
             FacesContext.getCurrentInstance().addMessage(null, message);
@@ -93,8 +171,17 @@ public class AlquilerItemsBean implements Serializable {
            // System.out.println("Sreg"+nombre+telefono+direccion+email);
             registrar();
     }
+    
+    public void itemAction(ActionEvent actionEvent){
+            registrarItem();
+    }
+        
         public void alquiler(Cliente c) throws IOException{
             current=c;
             FacesContext.getCurrentInstance().getExternalContext().redirect("/videotienda/RegistroClienteItem.xhtml");
         }
+        
+    public void home()throws IOException{
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/videotienda/RegistroClientes.xhtml");
+    }
 }

@@ -84,16 +84,20 @@ public class AlquilerTest {
         sa.registrarCliente(new Cliente("Juan Perez",9844,"24234","calle 123","aa@gmail.com"));
         sa.registrarItem(i1);
                 
-        Item item=sa.consultarItem(66);
+        Item itemo=sa.consultarItem(66);
         
-        sa.registrarAlquilerCliente(java.sql.Date.valueOf("2018-14-02"), 9844, item, 10);
-        //prueba: 4 dias antes de la entrega
+        sa.registrarAlquilerCliente(java.sql.Date.valueOf("2005-12-20"), 9844, itemo, 10);
+        //prueba: 2 dias antes de la entrega
+
+       
+        
         assertEquals("No se calcula correctamente la multa (0) "
                 + "cuando la devolucion se realiza Dias antes del limite de entrega."
-                ,0,sa.consultarMultaAlquiler(66, java.sql.Date.valueOf("2018-23-02")));
+                ,0,sa.consultarMultaAlquiler(66, java.sql.Date.valueOf("2005-12-28")));
+        
+        
         
     }
-    
     
     
     

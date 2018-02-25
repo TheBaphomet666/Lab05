@@ -112,4 +112,5 @@ public abstract class ServiciosAlquiler {
 
     public abstract void vetarCliente(long docu, boolean estado) throws ExcepcionServiciosAlquiler;
     public abstract Map<Long,Cliente> getclientes();
+    public abstract Map<Integer,Long> getitems();
 }

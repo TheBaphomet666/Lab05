@@ -7,6 +7,9 @@ package edu.eci.pdsw.samples.entities;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 
 /**
  *
@@ -14,11 +17,14 @@ import java.sql.Date;
  */
 public class ItemRentado implements Serializable{
     
+    private static final int MULTA_DIARIA=5000;
     private Item item;
     private Date fechainiciorenta;
     private Date fechafinrenta;
-    
+    public long multa;
 
+   
+    
     public ItemRentado(Item item, Date fechainiciorenta, Date fechafinrenta) {
               
         this.item = item;

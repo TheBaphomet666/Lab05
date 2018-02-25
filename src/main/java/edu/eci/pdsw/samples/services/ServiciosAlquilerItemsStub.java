@@ -180,8 +180,9 @@ public class ServiciosAlquilerItemsStub extends ServiciosAlquiler implements Ser
     
     
     
-    @Override
+   @Override
     public long consultarMultaAlquiler(int iditem,Date fechaDevolucion) throws ExcepcionServiciosAlquiler{
+        
         if (!itemsrentados.containsKey(iditem)){
             throw new ExcepcionServiciosAlquiler("El item "+iditem+"no esta en alquiler");
         }
@@ -190,7 +191,10 @@ public class ServiciosAlquilerItemsStub extends ServiciosAlquiler implements Ser
             
             LocalDate fechaMinimaEntrega=ir.getFechafinrenta().toLocalDate();
             LocalDate fechaEntrega=fechaDevolucion.toLocalDate();
-            long diasRetraso = ChronoUnit.DAYS.between(fechaMinimaEntrega, fechaEntrega);
+            long diasRetraso = ChronoUnit.DAYS.between(fechaMinimaEntrega,fechaEntrega);
+            if (diasRetraso<=0){
+                diasRetraso=0;
+            }
             return diasRetraso*MULTA_DIARIA;
         }
     }
@@ -229,7 +233,12 @@ public class ServiciosAlquilerItemsStub extends ServiciosAlquiler implements Ser
     @Override
     public Map<Long,Cliente> getclientes() {
 		return clientes;
-	}
+    }
+    
+    @Override
+    public Map<Integer,Long> getitems() {
+		return mapaPrestamosPorIdCliente;
+    }
 
     
     
@@ -260,7 +269,7 @@ public class ServiciosAlquilerItemsStub extends ServiciosAlquiler implements Ser
         
         
         ItemRentado ir1=new ItemRentado(i1, java.sql.Date.valueOf("2017-01-01"), java.sql.Date.valueOf("2017-03-12"));
-        ItemRentado ir2=new ItemRentado(i2, java.sql.Date.valueOf("2017-01-04"), java.sql.Date.valueOf("2017-04-7"));
+        ItemRentado ir2=new ItemRentado(i2, java.sql.Date.valueOf("2017-01-04"), java.sql.Date.valueOf("2017-04-07"));
         ItemRentado ir3=new ItemRentado(i1, java.sql.Date.valueOf("2017-01-07"), java.sql.Date.valueOf("2017-07-12"));
         
         ArrayList<ItemRentado> list1 = new ArrayList<>();
