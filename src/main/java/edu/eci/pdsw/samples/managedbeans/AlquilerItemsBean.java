@@ -95,6 +95,6 @@ public class AlquilerItemsBean implements Serializable {
     }
         public void alquiler(Cliente c) throws IOException{
             current=c;
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/RegistroClienteItem.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/videotienda/RegistroClienteItem.xhtml");
         }
 }
