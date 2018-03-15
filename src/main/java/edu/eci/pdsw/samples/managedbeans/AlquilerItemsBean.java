@@ -38,6 +38,7 @@ public class AlquilerItemsBean implements Serializable {
     private String direccion="direccion";
     private String email="email";
     private Cliente current;
+    private String currentName;
     private int id;
     private int dias;
     private java.sql.Date fecha;
@@ -47,16 +48,24 @@ public class AlquilerItemsBean implements Serializable {
     
     public AlquilerItemsBean() {
         clientes=sp.getclientes();
+        items=sp.getitems();
         
     }
+   
+    
     public List<Cliente> getClientes() {
 		List<Cliente> list = new ArrayList<Cliente>(sp.getclientes().values());
                 return list;
     }
     
-    public List<ItemRentado> getItems(){
-                List<ItemRentado> list = current.getRentados();
+    public List<ItemRentado> getItems() throws ExcepcionServiciosAlquiler{
+        try{
+                List<ItemRentado> list=sp.consultarItemsCliente(current.getDocumento());
                 return list;
+        }
+        catch(ExcepcionServiciosAlquiler e){
+                throw new ExcepcionServiciosAlquiler("Items no encontrados");
+        }
     }
     
     
@@ -140,10 +149,10 @@ public class AlquilerItemsBean implements Serializable {
     
     public void registrarItem(){
         try{
-          sp.registrarAlquilerCliente(fecha,current.getDocumento(),sp.consultarItem(id),dias);
+            sp.registrarAlquilerCliente(fecha,current.getDocumento(),sp.consultarItem(id),dias);
         }
         catch(Exception e){
-            addMessage("Ese Item ya se ha registrado");
+            addMessage("Ese Item ya se ha registrado o no esta en inventario");
         }
     }
     
@@ -181,7 +190,13 @@ public class AlquilerItemsBean implements Serializable {
             FacesContext.getCurrentInstance().getExternalContext().redirect("/videotienda/RegistroClienteItem.xhtml");
         }
         
+    
     public void home()throws IOException{
         FacesContext.getCurrentInstance().getExternalContext().redirect("/videotienda/RegistroClientes.xhtml");
+    }
+    
+    public String getcurrentName(){
+        currentName=current.getNombre();
+        return currentName;
     }
 }

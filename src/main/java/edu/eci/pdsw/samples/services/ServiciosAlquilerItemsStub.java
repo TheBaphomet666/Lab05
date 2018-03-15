@@ -255,22 +255,24 @@ public class ServiciosAlquilerItemsStub extends ServiciosAlquiler implements Ser
         
         
         Item i1=new Item(ti1, 1, "Los 4 Fantasticos", "Los 4 Fantásticos  es una película de superhéroes  basada en la serie de cómic homónima de Marvel.", java.sql.Date.valueOf("2005-06-08"), 2000, "DVD", "Ciencia Ficcion");
-        Item i2=new Item(ti2, 2, "Halo 3", "Halo 3 es un videojuego de disparos en primera persona desarrollado por Bungie Studios.", java.sql.Date.valueOf("2007-09-08"), 3000, "DVD", "Shooter");
+        Item i2=new Item(ti2, 2, "Halo 5", "Halo 5 es un videojuego de disparos en primera persona desarrollado por Bungie Studios.", java.sql.Date.valueOf("2007-09-08"), 3000, "DVD", "Shooter");
         Item i3=new Item(ti3, 3, "Thriller", "Thriller es una canción interpretada por el cantante estadounidense Michael Jackson, compuesta por Rod Temperton y producida por Quincy Jones.", java.sql.Date.valueOf("1984-01-11"), 2000, "DVD", "Pop");
-        Item i4=new Item(ti1, 4, "Los 4 Fantasticos", "Los 4 Fantásticos  es una película de superhéroes  basada en la serie de cómic homónima de Marvel.", java.sql.Date.valueOf("2005-06-08"), 2000, "DVD", "Ciencia Ficcion");
+        Item i4=new Item(ti1, 4, "Los 5 Fantasticos", "Los 4 Fantásticos  es una película de superhéroes  basada en la serie de cómic homónima de Marvel.", java.sql.Date.valueOf("2005-06-08"), 2000, "DVD", "Ciencia Ficcion");
         Item i5=new Item(ti2, 5, "Halo 3", "Halo 3 es un videojuego de disparos en primera persona desarrollado por Bungie Studios.", java.sql.Date.valueOf("2007-09-08"), 3000, "DVD", "Shooter");
-        Item i6=new Item(ti3, 6, "Thriller", "Thriller es una canción interpretada por el cantante estadounidense Michael Jackson, compuesta por Rod Temperton y producida por Quincy Jones.", java.sql.Date.valueOf("1984-01-11"), 2000, "DVD", "Pop");
+        Item i6=new Item(ti3, 6, "Thriller2", "Thriller es una canción interpretada por el cantante estadounidense Michael Jackson, compuesta por Rod Temperton y producida por Quincy Jones.", java.sql.Date.valueOf("1984-01-11"), 2000, "DVD", "Pop");
+        Item i7=new Item(ti1, 7, "El Ciempies Humano","Pelicula gore",java.sql.Date.valueOf("2005-06-08"),2000,"DVD","Terror Psicologico");
         //items.put(1, i1);
         //items.put(2, i2);
         //items.put(3, i3);
         itemsDisponibles.put(4, i4);
         itemsDisponibles.put(5, i5);
         itemsDisponibles.put(6, i6);
+        itemsDisponibles.put(7, i7);
         
         
         ItemRentado ir1=new ItemRentado(i1, java.sql.Date.valueOf("2017-01-01"), java.sql.Date.valueOf("2017-03-12"));
         ItemRentado ir2=new ItemRentado(i2, java.sql.Date.valueOf("2017-01-04"), java.sql.Date.valueOf("2017-04-07"));
-        ItemRentado ir3=new ItemRentado(i1, java.sql.Date.valueOf("2017-01-07"), java.sql.Date.valueOf("2017-07-12"));
+        ItemRentado ir3=new ItemRentado(i5, java.sql.Date.valueOf("2017-01-07"), java.sql.Date.valueOf("2017-07-12"));
         
         ArrayList<ItemRentado> list1 = new ArrayList<>();
         list1.add(ir1);

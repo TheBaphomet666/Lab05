@@ -14,6 +14,11 @@
                             <td>    
                                 <h:form id="formulario_alquiler">
                                   <tr>
+                                      <td>Nombre cliente
+                                      <h:outputText value="#{AlquilerItems.currentName}"/>
+                                      </td>
+                                  </tr>  
+                                  <tr>
                                       <td>Id Item
                                       <p:inputText id="id" value="#{AlquilerItems.id}" required="true"/></td>
                                   </tr>
@@ -22,12 +27,8 @@
                                       <p:inputText id="dias" value="#{AlquilerItems.dias}" required="true"/></td>
                                   </tr>
                                   <tr>
-                                      <td>Costo
-                                      <h:outputText id="costo" value="#{AlquilerItems.costo(id,dias)}" required="true"/></td>
-                                  </tr>
-                                  <tr>
                                       <td>
-                                       <p:commandButton id="registeritem" type="submit" value="RegistrarAlquiler"  actionListener="#{AlquilerItems.itemAction}" styleClass="ui-priority-primary" process="@form" partialSubmit="true" ajax="true" update=":tabla,formulario_alquiler"/>
+                                       <p:commandButton id="registeritem" type="submit" value="RegistrarAlquiler"  actionListener="#{AlquilerItems.itemAction}" styleClass="ui-priority-primary" process="@form" partialSubmit="true" ajax="true" update=":tabla"/>
                                       </td>
                                   </tr>
                                   
@@ -51,7 +52,6 @@
                                             <h:outputText value="#{AlquilerItems.multa(items.item.id)}"/>
                                         </p:column>
                                         
-                                       
                                     </p:dataTable>
                                     <br />
                                 </td>
